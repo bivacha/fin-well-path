@@ -52,6 +52,31 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Financial wellness app colors
+				finpurple: {
+					DEFAULT: '#9b87f5',
+					dark: '#7E69AB',
+					light: '#E5DEFF',
+				},
+				finblue: {
+					DEFAULT: '#D3E4FD',
+					accent: '#1EAEDB',
+				},
+				finpeach: {
+					DEFAULT: '#FDE1D3',
+				},
+				finpink: {
+					DEFAULT: '#FFDEE2',
+				},
+				finorange: {
+					DEFAULT: '#F97316',
+				},
+				fingray: {
+					DEFAULT: '#8E9196',
+					light: '#F1F0FB',
+					medium: '#8A898C',
+					dark: '#221F26',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
