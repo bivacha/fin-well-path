@@ -11,7 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAppStore, generateAndStoreRoadmap } from "@/lib/store";
 import { FinancialGoal } from "@/types";
-import { DollarSign, PiggyBank, Home, Landmark, CreditCard } from "lucide-react";
+import { DollarSign, PiggyBank, Home, Landmark, CreditCard, Sparkles } from "lucide-react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const formSchema = z.object({
   monthlyIncome: z.string().min(1, "Please enter your monthly income"),
@@ -62,7 +63,16 @@ const Onboarding = () => {
           <PiggyBank className="w-10 h-10 text-finpurple" />
         </div>
         <h1 className="text-3xl font-bold text-fingray-dark mb-2">Welcome to FinWell</h1>
-        <p className="text-fingray-medium">Let's create your personalized financial wellness plan</p>
+        <p className="text-fingray-medium mb-4">Let's create your personalized financial wellness plan</p>
+        
+        <Card className="bg-finpurple-light bg-opacity-20 border-finpurple-light mb-6">
+          <CardContent className="p-4 flex items-center gap-3">
+            <Sparkles className="h-5 w-5 text-finpurple" />
+            <p className="text-fingray-dark text-left">
+              Hi! I'm your AI Financial Coach. I'll help you take control of your money, one step at a time.
+            </p>
+          </CardContent>
+        </Card>
       </div>
       
       <div className="bg-white p-6 rounded-xl shadow-sm border border-finpurple-light">
@@ -73,7 +83,7 @@ const Onboarding = () => {
               name="monthlyIncome"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-fingray-dark">Monthly income after taxes</FormLabel>
+                  <FormLabel className="text-fingray-dark font-medium text-base">What's your monthly take-home pay?</FormLabel>
                   <FormControl>
                     <div className="relative">
                       <DollarSign className="absolute left-3 top-2.5 h-5 w-5 text-fingray" />
@@ -96,7 +106,7 @@ const Onboarding = () => {
               name="financialGoal"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-fingray-dark">Your primary financial goal</FormLabel>
+                  <FormLabel className="text-fingray-dark font-medium text-base">Which goal matters most to you right now?</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="w-full">
@@ -140,7 +150,7 @@ const Onboarding = () => {
               name="hasDebt"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel className="text-fingray-dark">Do you have debt?</FormLabel>
+                  <FormLabel className="text-fingray-dark font-medium text-base">Do you currently have any debt?</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -168,10 +178,10 @@ const Onboarding = () => {
             
             <Button
               type="submit"
-              className="w-full bg-finpurple hover:bg-finpurple-dark"
+              className="w-full bg-finpurple hover:bg-finpurple-dark transition-all"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Generating Your Plan..." : "Generate My Plan"}
+              {isSubmitting ? "Creating Your Plan..." : "Create My Personal Plan"}
             </Button>
           </form>
         </Form>
