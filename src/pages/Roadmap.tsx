@@ -13,6 +13,7 @@ import {
   CollapsibleTrigger 
 } from "@/components/ui/collapsible";
 import { toast } from "sonner";
+import { AskFinnyButton } from "@/components/FinnyChat/AskFinnyButton";
 
 const Roadmap = () => {
   const navigate = useNavigate();
@@ -54,6 +55,30 @@ const Roadmap = () => {
 
   // If all steps are completed, show a congratulations message
   const allCompleted = roadmap.length > 0 && completedSteps === roadmap.length;
+  
+  // Map step titles to relevant Finny questions
+  const getFinnyQuestion = (title: string): string => {
+    const questionMap: Record<string, string> = {
+      "Build an emergency fund": "What's an emergency fund?",
+      "Create a budget": "How do I start budgeting?",
+      "Set up automatic savings": "How much should I save?",
+      "Track your expenses": "How do I start budgeting?",
+      "Pay down high-interest debt": "Should I pay off debt or save first?",
+      "Check your credit score": "How do I improve my credit score?",
+      "Research mortgage options": "Should I buy or rent?",
+      "Set up a dedicated home savings fund": "How to save for a home?",
+      "Increase retirement contributions": "What's a 401k?",
+      "Calculate retirement needs": "How much should I save for retirement?"
+    };
+    
+    for (const key in questionMap) {
+      if (title.toLowerCase().includes(key.toLowerCase())) {
+        return questionMap[key];
+      }
+    }
+    
+    return "How can I improve my finances?";
+  };
   
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
@@ -99,8 +124,15 @@ const Roadmap = () => {
                     <CircleDashed className="h-6 w-6 text-finpurple" />
                   }
                 </div>
-                <div>
+                <div className="flex-1">
                   Step {step.id + 1}: {step.title}
+                  
+                  <div className="flex mt-1">
+                    <AskFinnyButton 
+                      question={getFinnyQuestion(step.title)}
+                      className="mr-2"
+                    />
+                  </div>
                 </div>
               </CardTitle>
             </CardHeader>

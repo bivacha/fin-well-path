@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +10,7 @@ import Roadmap from "./pages/Roadmap";
 import Progress from "./pages/Progress";
 import HRDashboard from "./pages/HRDashboard";
 import NotFound from "./pages/NotFound";
+import { FinnyProvider } from "./components/FinnyChat/FinnyProvider";
 
 const queryClient = new QueryClient();
 
@@ -18,16 +20,18 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Onboarding />} />
-            <Route path="/roadmap" element={<Roadmap />} />
-            <Route path="/progress" element={<Progress />} />
-            <Route path="/hr-dashboard" element={<HRDashboard />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
+        <FinnyProvider>
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<Onboarding />} />
+              <Route path="/roadmap" element={<Roadmap />} />
+              <Route path="/progress" element={<Progress />} />
+              <Route path="/hr-dashboard" element={<HRDashboard />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </FinnyProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
